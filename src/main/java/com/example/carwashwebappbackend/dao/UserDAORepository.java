@@ -25,7 +25,7 @@ public class UserDAORepository implements UserDAO{
         Session currentSession = entityManager.unwrap(Session.class);
 
         Query<User> theQuery =
-                currentSession.createQuery("from User", User.class);
+                currentSession.createQuery("from user", User.class);
 
         return theQuery.getResultList();
     }
