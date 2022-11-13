@@ -1,6 +1,6 @@
 package com.example.carwashwebappbackend.rest;
 
-import com.example.carwashwebappbackend.dao.UserDAO;
+import com.example.carwashwebappbackend.dao.user.UserDAO;
 import com.example.carwashwebappbackend.entity.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;

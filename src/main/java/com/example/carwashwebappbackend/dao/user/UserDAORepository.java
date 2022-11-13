@@ -1,4 +1,4 @@
-package com.example.carwashwebappbackend.dao;
+package com.example.carwashwebappbackend.dao.user;
 
 import com.example.carwashwebappbackend.entity.User;
 import org.hibernate.Session;
@@ -25,7 +25,7 @@ public class UserDAORepository implements UserDAO{
         Session currentSession = entityManager.unwrap(Session.class);
 
         Query<User> theQuery =
-                currentSession.createQuery("from user", User.class);
+                currentSession.createQuery("from User", User.class);
 
         return theQuery.getResultList();
     }

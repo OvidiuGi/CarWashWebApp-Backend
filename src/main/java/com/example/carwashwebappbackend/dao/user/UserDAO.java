@@ -1,4 +1,4 @@
-package com.example.carwashwebappbackend.dao;
+package com.example.carwashwebappbackend.dao.user;
 
 import com.example.carwashwebappbackend.entity.User;
 
