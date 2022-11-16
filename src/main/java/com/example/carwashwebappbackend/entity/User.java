@@ -1,9 +1,13 @@
 package com.example.carwashwebappbackend.entity;
 
+import lombok.Data;
+
 import javax.persistence.*;
+import java.util.Set;
 
 @Entity
 @Table(name="user")
+@Data
 public class User {
     @Id
     @GeneratedValue(strategy= GenerationType.IDENTITY)
@@ -25,75 +29,13 @@ public class User {
     @Column(name="password")
     private String password;
 
-    public User() {
+    @OneToMany(mappedBy = "owner", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    private Set<CarWash> carWashes;
 
-    }
+    @OneToMany(mappedBy="customer", fetch= FetchType.LAZY, cascade = CascadeType.ALL)
+    private Set<Appointments> appointments;
 
-    public User(String firstName, String lastName, String email, String telephoneNr, String password) {
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.email = email;
-        this.telephoneNr = telephoneNr;
-        this.password = password;
-    }
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
-
-    public String getFirstName() {
-        return firstName;
-    }
-
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
-    }
-
-    public String getLastName() {
-        return lastName;
-    }
-
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
-    public String getTelephoneNr() {
-        return telephoneNr;
-    }
-
-    public void setTelephoneNr(String telephoneNr) {
-        this.telephoneNr = telephoneNr;
-    }
-
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
-    }
-
-    @Override
-    public String toString() {
-        return "User{" +
-                "id=" + id +
-                ", firstName='" + firstName + '\'' +
-                ", lastName='" + lastName + '\'' +
-                ", email='" + email + '\'' +
-                ", telephoneNr='" + telephoneNr + '\'' +
-                ", password='" + password + '\'' +
-                '}';
-    }
+    @ManyToOne(fetch=FetchType.LAZY, optional = false)
+    @JoinColumn(name="role_id")
+    private Role role;
 }

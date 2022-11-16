@@ -14,17 +14,17 @@ CREATE TABLE `user` (
 	`email` varchar(45) DEFAULT NULL,
 	`telephone_nr` varchar(45) DEFAULT NULL,
 	`password` varchar(256) DEFAULT NULL,
-    `role` int(11) DEFAULT NULL,
+    `role_id` int(11) DEFAULT NULL,
     PRIMARY KEY (`id`),
-	FOREIGN KEY (`role`) REFERENCES `role`(`id`)
+	FOREIGN KEY (`role_id`) REFERENCES `role`(`id`)
 );
 
 CREATE TABLE `carwash` (
    `id` int(11) PRIMARY KEY NOT NULL AUTO_INCREMENT,
    `address` varchar(256) DEFAULT NULL,
    `name`varchar(256) DEFAULT NULL,
-   `owner` int(11) DEFAULT NULL,
-   FOREIGN KEY (`owner`) REFERENCES `user`(`id`)
+   `owner_id` int(11) DEFAULT NULL,
+   FOREIGN KEY (`owner_id`) REFERENCES `user`(`id`)
 );
 
 
@@ -35,21 +35,21 @@ CREATE TABLE `services` (
 );
 
 CREATE TABLE `carwashservices` (
-	`carWashId` int(15) NOT NULL,
-    `servicesId` int(15) NOT NULL,
-    FOREIGN KEY (`carWashId`) REFERENCES `carwash`(`id`),
-    FOREIGN KEY (`servicesId`) REFERENCES `services`(`id`),
-    UNIQUE (`carWashId`,`servicesId`)
+	`carwash_id` int(15) NOT NULL,
+    `services_id` int(15) NOT NULL,
+    FOREIGN KEY (`carwash_id`) REFERENCES `carwash`(`id`),
+    FOREIGN KEY (`services_id`) REFERENCES `services`(`id`),
+    UNIQUE (`carwash_id`,`services_id`)
 );
 
 CREATE TABLE `appointments` (
 	`id` int(11) PRIMARY KEY NOT NULL AUTO_INCREMENT,
-    `startTime` datetime DEFAULT NULL,
-    `endTime` datetime DEFAULT NULL,
+    `start_time` datetime DEFAULT NULL,
+    `end_time` datetime DEFAULT NULL,
     `customer_id` int(11) DEFAULT NULL,
-    `carWash_id` int(11) DEFAULT NULL,
+    `carwash_id` int(11) DEFAULT NULL,
     `service_id` int(11) DEFAULT NULL,
     FOREIGN KEY (`customer_id`) REFERENCES `user`(`id`),
-    FOREIGN KEY (`carWash_id`) REFERENCES `carwash`(`id`),
+    FOREIGN KEY (`carwash_id`) REFERENCES `carwash`(`id`),
     FOREIGN KEY (`service_id`) REFERENCES `services`(`id`)
 );

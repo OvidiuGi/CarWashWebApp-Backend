@@ -1,26 +1,20 @@
 package com.example.carwashwebappbackend.rest;
 
-import com.example.carwashwebappbackend.dao.user.UserDAO;
+import com.example.carwashwebappbackend.dao.UserRepository;
 import com.example.carwashwebappbackend.entity.User;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
-
-import java.util.List;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping("/api")
+@RequestMapping("/users")
 public class UserRestController {
-    private UserDAO userDAO;
+    private UserRepository userRepository;
 
     @Autowired
-    public UserRestController(UserDAO theUserDAO) {
-        userDAO = theUserDAO;
+    public UserRestController(UserRepository theUserRepository) {
+        userRepository = theUserRepository;
     }
 
-    @GetMapping("/users")
-    public List<User> findAll() {
-        return userDAO.findAll();
-    }
+    @GetMapping()
+    public @ResponseBody Iterable<User> findAll() { return userRepository.findAll(); }
 }
