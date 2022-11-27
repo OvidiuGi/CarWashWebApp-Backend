@@ -1,4 +1,4 @@
-package com.example.carwashwebappbackend.entity;
+package com.example.carwashwebappbackend.model;
 
 import lombok.Data;
 
@@ -8,7 +8,7 @@ import java.time.LocalDateTime;
 @Entity
 @Table(name="appointments")
 @Data
-public class Appointments {
+public class Appointment {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

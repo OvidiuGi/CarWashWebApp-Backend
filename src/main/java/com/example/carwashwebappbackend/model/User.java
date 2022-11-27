@@ -1,4 +1,4 @@
-package com.example.carwashwebappbackend.entity;
+package com.example.carwashwebappbackend.model;
 
 import lombok.Data;
 
@@ -33,7 +33,7 @@ public class User {
     private Set<CarWash> carWashes;
 
     @OneToMany(mappedBy="customer", fetch= FetchType.LAZY, cascade = CascadeType.ALL)
-    private Set<Appointments> appointments;
+    private Set<Appointment> appointments;
 
     @ManyToOne(fetch=FetchType.LAZY, optional = false)
     @JoinColumn(name="role_id")

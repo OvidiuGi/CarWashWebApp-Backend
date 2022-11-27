@@ -1,5 +1,6 @@
-package com.example.carwashwebappbackend.entity;
+package com.example.carwashwebappbackend.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
 
 import javax.persistence.*;
@@ -18,6 +19,7 @@ public class Role {
     @Column(name = "role")
     private String role;
 
+    @JsonIgnore
     @OneToMany(mappedBy = "role", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private Set<User> users;
 }
