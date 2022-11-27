@@ -1,4 +1,4 @@
-package com.example.carwashwebappbackend.entity;
+package com.example.carwashwebappbackend.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
