@@ -1,8 +1,11 @@
 package com.example.carwashwebappbackend.entity;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import lombok.Data;
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Set;
 
 @Entity
@@ -15,9 +18,14 @@ public class Role {
     @Column(name = "id")
     private int id;
 
-    @Column(name = "role")
-    private String role;
+    @Column(name = "name")
+    private String name;
 
     @OneToMany(mappedBy = "role", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    private Set<User> users;
+    @JsonBackReference
+    private List<User> users;
+
+    public List<User> getUsers() {
+        return users;
+    }
 }

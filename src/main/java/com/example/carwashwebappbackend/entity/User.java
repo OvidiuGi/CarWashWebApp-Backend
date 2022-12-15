@@ -1,5 +1,8 @@
 package com.example.carwashwebappbackend.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Data;
 
 import javax.persistence.*;
@@ -30,12 +33,33 @@ public class User {
     private String password;
 
     @OneToMany(mappedBy = "owner", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @JsonIgnore
     private Set<CarWash> carWashes;
 
     @OneToMany(mappedBy="customer", fetch= FetchType.LAZY, cascade = CascadeType.ALL)
+    @JsonIgnore
     private Set<Appointments> appointments;
 
-    @ManyToOne(fetch=FetchType.LAZY, optional = false)
+    @ManyToOne(
+            fetch=FetchType.LAZY,
+            optional = false,
+            cascade = {
+                    CascadeType.PERSIST,
+                    CascadeType.MERGE,
+                    CascadeType.DETACH,
+                    CascadeType.REFRESH
+            })
     @JoinColumn(name="role_id")
+    @JsonManagedReference
     private Role role;
+
+    @JsonIgnore
+    public Role getRole() {
+        return role;
+    }
+
+    @JsonProperty("role")
+    public String getRoleName() {
+        return role.getName();
+    }
 }

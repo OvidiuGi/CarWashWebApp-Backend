@@ -3,7 +3,7 @@ USE `carwash`;
 
 CREATE TABLE `role` (
 	`id` int(11) NOT NULL AUTO_INCREMENT,
-    `role` varchar(45) DEFAULT NULL,
+    `name` varchar(45) DEFAULT NULL,
     PRIMARY KEY (`id`)
 );
 
