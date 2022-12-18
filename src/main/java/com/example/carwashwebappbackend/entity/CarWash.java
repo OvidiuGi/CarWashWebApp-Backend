@@ -1,6 +1,7 @@
 package com.example.carwashwebappbackend.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.Data;
 
 import javax.persistence.*;
@@ -26,6 +27,7 @@ public class CarWash {
     @ManyToOne(fetch=FetchType.LAZY, optional = false)
     @JoinColumn(name="owner_id")
     @JsonIgnore
+    @JsonManagedReference
     private User owner;
 
     @ManyToMany

@@ -1,5 +1,6 @@
 package com.example.carwashwebappbackend.entity;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -34,6 +35,7 @@ public class User {
 
     @OneToMany(mappedBy = "owner", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @JsonIgnore
+    @JsonBackReference
     private Set<CarWash> carWashes;
 
     @OneToMany(mappedBy="customer", fetch= FetchType.LAZY, cascade = CascadeType.ALL)
